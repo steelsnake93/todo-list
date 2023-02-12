@@ -1,2 +1,2 @@
 import { formatDistance, subDays } from "date-fns";
-import { projectData } from "./projectData";
+import { projectData } from "./utilities/projectData";
