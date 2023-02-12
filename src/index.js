@@ -1,6 +1,6 @@
 import { formatDistance, subDays } from "date-fns";
+import { projectData } from "./prjectData";
 
+projectData.push({ projectName: 'Default Project', todos: [] });
 
-    const date = new Date();
-    formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true })
-    console.log(date);
+const allProjects = projectData;
