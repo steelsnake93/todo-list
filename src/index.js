@@ -1,2 +1,2 @@
-import './styles.css';
-console.log('Hello webpack!');
+import "./styles.css";
+import "./components/layout/PageLayout";
