@@ -1,63 +1,51 @@
-export function Sidebar() {
-    const sidebar = document.createElement('div');
-    sidebar.id = "app-sidebar";
-    sidebar.className = "hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-[60] w-64 bg-blue-700 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0";
-    
-    const innerDiv = document.createElement('div');
-    innerDiv.className = "px-6";
-    sidebar.appendChild(innerDiv);
-
-    const brandLink = document.createElement('a');
-    brandLink.className = "flex-none text-xl font-semibold text-white";
-    brandLink.href = "#";
-    brandLink.setAttribute('aria-label', 'Brand');
-    brandLink.textContent = 'To Do';
-    innerDiv.appendChild(brandLink);
-
-    const nav = document.createElement('nav');
-    nav.className = "hs-accordion-group p-6 w-full flex flex-col flex-wrap";
-    nav.setAttribute('data-hs-accordion-always-open', '');
-    innerDiv.appendChild(nav);
-
-    const ul = document.createElement('ul');
-    ul.className = "space-y-1.5";
-    nav.appendChild(ul);
-
-    function createListItem(text) {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.className = "flex items-center gap-x-3 py-2 px-2.5 bg-blue-600 text-sm text-white rounded-md";
-        a.textContent = text;
-        li.appendChild(a);
-        return li;
-    }
-
-    ul.appendChild(createListItem('Inbox'));
-    ul.appendChild(createListItem('Today'));
-    ul.appendChild(createListItem('Upcoming'));
-    ul.appendChild(createListItem('Filters and Labels'));
-
-    const projectDiv = document.createElement('div');
-    projectDiv.id = "projects";
-    ul.appendChild(projectDiv);
-
-    const projectUl = document.createElement('ul');
-    projectUl.className = "pt-2 pl-2";
-    projectDiv.appendChild(projectUl);
-
-    function createProjectListItem(text) {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.className = "flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600";
+const SidebarModule = (function () {
+    function createListItem(text, additionalClasses = "") {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.className = `flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${additionalClasses}`;
         a.href = "javascript:;";
         a.textContent = text;
         li.appendChild(a);
         return li;
     }
 
-    projectUl.appendChild(createProjectListItem('Link 1'));
-    projectUl.appendChild(createProjectListItem('Link 2'));
-    projectUl.appendChild(createProjectListItem('Link 3'));
+    return {
+        init: function () {
+            const sidebarDiv = document.createElement("aside");
+            sidebarDiv.className =
+                "fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
 
-    return sidebar;
-}
+            const innerDiv = document.createElement("div");
+            innerDiv.className =
+                "overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800";
+            sidebarDiv.appendChild(innerDiv);
+
+            const primaryNav = document.createElement("ul");
+            primaryNav.className = "space-y-2";
+            innerDiv.appendChild(primaryNav);
+
+            primaryNav.appendChild(createListItem("Today", "bg-blue-600"));
+            primaryNav.appendChild(createListItem("Inbox", "bg-blue-600"));
+            primaryNav.appendChild(createListItem("Upcoming", "bg-blue-600"));
+            primaryNav.appendChild(
+                createListItem("Filters and Labels", "bg-blue-600")
+            );
+
+            const projectsDiv = document.createElement("div");
+            projectsDiv.id = "projects";
+            innerDiv.appendChild(projectsDiv);
+
+            const projectsList = document.createElement("ul");
+            projectsList.className =
+                "pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-500";
+            projectsDiv.appendChild(projectsList);
+
+            projectsList.appendChild(createListItem("Project 1"));
+            projectsList.appendChild(createListItem("Project 2"));
+            projectsList.appendChild(createListItem("Project 3"));
+
+            return sidebarDiv;
+        },
+    };
+})();
+export default SidebarModule;

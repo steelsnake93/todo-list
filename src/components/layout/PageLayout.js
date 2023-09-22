@@ -1,15 +1,24 @@
-import { SidebarToggle } from "./SidebarToggle";
-import { Sidebar } from "./Sidebar";
-import { MainContent } from "./MainContent";
+import NavbarModule from './Navbar';
+import SidebarModule from './Sidebar';
+import MainContentModule from './MainContent';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const body = document.querySelector('body');
+const PageLayoutModule = (function () {
+    return {
+        init: function () {
+            const pageLayoutDiv = document.createElement("div");
+            pageLayoutDiv.className = "bg-gray-50 dark:bg-gray-300";
 
-    const sidebarToggleComponent = SidebarToggle();
-    const sidebarComponent = Sidebar();
-    const contentComponent = MainContent();
+            const navbar = NavbarModule.init();
+            pageLayoutDiv.appendChild(navbar);
 
-    body.appendChild(sidebarToggleComponent);
-    body.appendChild(sidebarComponent);
-    body.appendChild(contentComponent);
-});
+            const sidebar = SidebarModule.init();
+            pageLayoutDiv.appendChild(sidebar);
+
+            const mainContent = MainContentModule.init();
+            pageLayoutDiv.appendChild(mainContent);
+
+            return pageLayoutDiv;
+        }
+    };
+})();
+export default PageLayoutModule;
