@@ -1,2 +1,7 @@
 import "./styles.css";
-import "./components/layout/PageLayout";
+import PageLayoutModule from './components/layout/PageLayout';
+
+document.addEventListener("DOMContentLoaded", () => {
+    const layout = PageLayoutModule.init();
+    document.body.appendChild(layout);
+});
