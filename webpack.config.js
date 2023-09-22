@@ -13,6 +13,10 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        loader: "svg-inline-loader",
+      },
+      {
         test: /\.js$/,
         use: "babel-loader",
         exclude: /node_modules/,
