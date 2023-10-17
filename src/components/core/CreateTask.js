@@ -2,6 +2,20 @@ function createTask(taskText) {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task flex items-center my-2";
 
+  const completitionCheckbox = document.createElement("input");
+  completitionCheckbox.type = "checkbox";
+  completitionCheckbox.className = "completition-checkbox mr-2";
+
+  completitionCheckbox.addEventListener('change', function () {
+    if (completitionCheckbox.checked) {
+      taskInput.style.textDecoration = "line-through";
+    } else {
+      taskInput.style.textDecoration = "none";
+    }
+  });
+
+  taskDiv.appendChild(completitionCheckbox);
+
   const contentDiv = document.createElement("div");
   contentDiv.className = "content w-full mx-2";
 
