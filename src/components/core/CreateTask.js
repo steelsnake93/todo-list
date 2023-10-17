@@ -33,6 +33,17 @@ function createTask(taskText) {
   editButton.className =
     "edit text-white bg-blue-700 hover:bg-blue-700 focus:outline-none font-medium mx-1 rounded-md text-md px-2 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700";
   editButton.textContent = "Edit";
+
+  editButton.addEventListener('click', function () {
+    if (taskInput.readOnly) {
+      taskInput.readOnly = false;
+      editButton.textContent = "Save";
+    } else {
+      taskInput.readOnly = true;
+      editButton.textContent = "Edit";
+    }
+  });
+
   actionsDiv.appendChild(editButton);
 
   const deleteButton = document.createElement("button");
