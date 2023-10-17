@@ -1,3 +1,5 @@
+import showNotification  from './Notification'
+
 function createTask(taskText) {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task flex items-center my-2";
@@ -38,9 +40,11 @@ function createTask(taskText) {
     if (taskInput.readOnly) {
       taskInput.readOnly = false;
       editButton.textContent = "Save";
+      showNotification('Editing task. Click "Save" when done.');
     } else {
       taskInput.readOnly = true;
       editButton.textContent = "Edit";
+      showNotification('Task edited successfully!');
     }
   });
 
@@ -56,6 +60,7 @@ function createTask(taskText) {
     if (confirmed) {
       taskDiv.remove();
     }
+    showNotification('Task deleted successfully!');
   });
 
   actionsDiv.appendChild(deleteButton);

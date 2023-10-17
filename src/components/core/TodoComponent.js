@@ -1,4 +1,5 @@
 import TodoListComponent from "./TodoListComponent";
+import showNotification  from './Notification'
 
 const TodoComponent = (function () {
     let todos = [];
@@ -12,8 +13,8 @@ const TodoComponent = (function () {
             todoListComponent.render(todos);
             event.target.elements.todoInput.value = "";
         }
+        showNotification('Task added successfully!');
     }
-
     return {
         init: function () {
             const todoDiv = document.createElement("div");
@@ -46,12 +47,12 @@ const TodoComponent = (function () {
             const addButton = document.createElement("input");
             addButton.type = "submit";
             addButton.className =
-                "text-white bg-blue-700 hover:bg-blue-700 focus:outline-none font-medium rounded-md text-md px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700";
+            "text-white bg-blue-700 hover:bg-blue-700 focus:outline-none font-medium rounded-md text-md px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700";
             addButton.value = "Add Task";
             todoForm.appendChild(addButton);
 
             todoDiv.appendChild(todoListComponent.getElement());
-
+            
             return todoDiv;
         },
     };
