@@ -1,6 +1,6 @@
-import NavbarModule from './Navbar';
-import SidebarModule from './Sidebar';
-import MainContentModule from './MainContent';
+import NavbarModule from "./Navbar";
+import SidebarModule from "./Sidebar";
+import MainContentModule from "./MainContent";
 
 const PageLayoutModule = (function () {
     return {
@@ -18,7 +18,7 @@ const PageLayoutModule = (function () {
             pageLayoutDiv.appendChild(mainContent);
 
             return pageLayoutDiv;
-        }
+        },
     };
 })();
 export default PageLayoutModule;
