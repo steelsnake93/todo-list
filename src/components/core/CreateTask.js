@@ -48,8 +48,16 @@ function createTask(taskText) {
 
   const deleteButton = document.createElement("button");
   deleteButton.className =
-    "delete text-white bg-blue-700 hover:bg-blue-700 focus:outline-none font-medium mx-1 rounded-md text-md px-2 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700";
+    "delete text-white bg-red-700 hover:bg-red-700 focus:outline-none font-medium mx-1 rounded-md text-md px-2 py-1 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-700";
   deleteButton.textContent = "Delete";
+
+  deleteButton.addEventListener('click', function () {
+    const confirmed = window.confirm("Are you sure you want to delete this task?");
+    if (confirmed) {
+      taskDiv.remove();
+    }
+  });
+
   actionsDiv.appendChild(deleteButton);
 
   taskDiv.appendChild(contentDiv);
