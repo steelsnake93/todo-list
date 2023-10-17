@@ -1,29 +1,17 @@
+import TodoListComponent from "./TodoListComponent";
+
 const TodoComponent = (function () {
     let todos = [];
-
-    function renderTodos() {
-        const todosList = document.getElementById("todos-list");
-        todosList.innerHTML = "";
-
-        todos.forEach((todo, index) => {
-            const li = document.createElement("li");
-            li.textContent = todo.text;
-            todosList.appendChild(li);
-        });
-    }
+    const todoListComponent = TodoListComponent();
 
     function handleSubmit(event) {
         event.preventDefault();
         const todoText = event.target.elements.todoInput.value.trim();
         if (todoText) {
-            addTodo(todoText);
+            todos.push({ text: todoText, completed: false });
+            todoListComponent.render(todos);
             event.target.elements.todoInput.value = "";
         }
-    }
-
-    function addTodo(text) {
-        todos.push({ text: text, completed: false });
-        renderTodos();
     }
 
     return {
@@ -32,7 +20,7 @@ const TodoComponent = (function () {
             todoDiv.id = "todo-component";
             const addTodoDiv = document.createElement("div");
             addTodoDiv.className =
-                "border-gray-300 dark:border-gray-600 max-w-lg h-auto mb-4 max-w-lg mx-auto";
+                "border-gray-300 dark:border-gray-600 h-auto mb-4 max-w-lg mx-auto";
             todoDiv.appendChild(addTodoDiv);
 
             const innerDiv = document.createElement("div");
@@ -61,9 +49,8 @@ const TodoComponent = (function () {
                 "text-white bg-blue-700 hover:bg-blue-700 focus:outline-none font-medium rounded-md text-md px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700";
             addButton.value = "Add Task";
             todoForm.appendChild(addButton);
-            const todosList = document.createElement("ul");
-            todosList.id = "todos-list";
-            todoDiv.appendChild(todosList);
+
+            todoDiv.appendChild(todoListComponent.getElement());
 
             return todoDiv;
         },
