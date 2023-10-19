@@ -3,22 +3,22 @@ import SidebarModule from "./Sidebar";
 import MainContentModule from "./MainContent";
 
 const PageLayoutModule = (function () {
-    return {
-        init: function () {
-            const pageLayoutDiv = document.createElement("div");
-            pageLayoutDiv.className = "bg-gray-50 dark:bg-gray-300";
+  return {
+    init: function () {
+      const pageLayoutDiv = document.createElement("div");
+      pageLayoutDiv.className = "bg-gray-50 dark:bg-gray-300";
 
-            const navbar = NavbarModule.init();
-            pageLayoutDiv.appendChild(navbar);
+      const sidebar = SidebarModule.init();
+      document.body.appendChild(sidebar);
 
-            const sidebar = SidebarModule.init();
-            pageLayoutDiv.appendChild(sidebar);
+      const navbar = NavbarModule.init();
+      document.body.appendChild(navbar);
 
-            const mainContent = MainContentModule.init();
-            pageLayoutDiv.appendChild(mainContent);
+      const mainContent = MainContentModule.init();
+      pageLayoutDiv.appendChild(mainContent);
 
-            return pageLayoutDiv;
-        },
-    };
+      return pageLayoutDiv;
+    },
+  };
 })();
 export default PageLayoutModule;
